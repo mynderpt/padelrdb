@@ -1,0 +1,72 @@
+.main {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(#17253F, black);
+}
+
+.login-btn,
+.signup-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none; /* <-- this removes underline */
+    color: white;
+    font-weight: bold;
+}
+
+/* Buttons Container */
+.buttons-container {
+    padding-top: 120px;
+    width: 500px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: white;
+}
+
+h3{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.login-btn:hover {
+    background: #0056b3;
+}
+
+/* Create Account Button */
+.signup-btn {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    background: #218838;
+}
+

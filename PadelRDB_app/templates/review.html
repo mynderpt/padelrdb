@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/review.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="main">
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Review</h1>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="container container-custom">
+
+        <!-- Racket Thumbnail Image -->
+        <div id="racket-thumbnail-container" class="img mb-3 text-center">
+            <img id="racket-thumbnail" src="{% static 'images/blank.png' %}" alt="Racket Thumbnail"
+                class="img-fluid rounded" style="max-width: 330px;">
+        </div>
+
+        <!-- Brand Dropdown -->
+        <div class="mb-3">
+            <select id="brand-select" class="form-select">
+                <option selected disabled>Select Brand</option>
+                {% for brand in brands %}
+                <option value="{{ brand.id }}">{{ brand.name|capfirst }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Model Dropdown -->
+        <div class="mb-3">
+            <select id="model-select" class="form-select" disabled>
+                <option selected disabled>Select Model</option>
+            </select>
+        </div>
+
+        <form id="review-form" method="POST" action="{% url 'submit_review' %}">
+            {% csrf_token %}
+            <input type="hidden" name="racket_id" id="racket-id">
+
+            <!-- Rating Sections -->
+            <!-- Power Rating -->
+            <div class="rating-section mb-3">
+                <div class="rating-header">
+                    <div>
+                        <span class="rating-title">Power</span>
+                        <div class="rating-subtext">How much force the racket provides</div>
+                    </div>
+                    <span class="rating-value" id="power-value">0</span>
+                </div>
+                <div class="rating-bars" data-attr="power">
+                    <div class="bar-segment empty" data-value="1"></div>
+                    <div class="bar-segment empty" data-value="2"></div>
+                    <div class="bar-segment empty" data-value="3"></div>
+                    <div class="bar-segment empty" data-value="4"></div>
+                    <div class="bar-segment empty" data-value="5"></div>
+                    <div class="bar-segment empty" data-value="6"></div>
+                    <div class="bar-segment empty" data-value="7"></div>
+                    <div class="bar-segment empty" data-value="8"></div>
+                    <div class="bar-segment empty" data-value="9"></div>
+                    <div class="bar-segment empty" data-value="10"></div>
+                </div>
+                <input type="hidden" name="power" id="input-power" value="0">
+            </div>
+
+            <!-- Control Rating -->
+            <div class="rating-section mb-3">
+                <div class="rating-header">
+                    <div>
+                        <span class="rating-title">Control</span>
+                        <div class="rating-subtext">How much force the racket provides</div>
+                    </div>
+                    <span class="rating-value" id="control-value">0</span>
+                </div>
+                <div class="rating-bars" data-attr="control">
+                    <div class="bar-segment empty" data-value="1"></div>
+                    <div class="bar-segment empty" data-value="2"></div>
+                    <div class="bar-segment empty" data-value="3"></div>
+                    <div class="bar-segment empty" data-value="4"></div>
+                    <div class="bar-segment empty" data-value="5"></div>
+                    <div class="bar-segment empty" data-value="6"></div>
+                    <div class="bar-segment empty" data-value="7"></div>
+                    <div class="bar-segment empty" data-value="8"></div>
+                    <div class="bar-segment empty" data-value="9"></div>
+                    <div class="bar-segment empty" data-value="10"></div>
+                </div>
+                <input type="hidden" name="control" id="input-control" value="0">
+            </div>
+
+            <!-- Comfort Rating -->
+            <div class="rating-section mb-3">
+                <div class="rating-header">
+                    <div>
+                        <span class="rating-title">Comfort</span>
+                        <div class="rating-subtext">How much force the racket provides</div>
+                    </div>
+                    <span class="rating-value" id="comfort-value">0</span>
+                </div>
+                <div class="rating-bars" data-attr="comfort">
+                    <div class="bar-segment empty" data-value="1"></div>
+                    <div class="bar-segment empty" data-value="2"></div>
+                    <div class="bar-segment empty" data-value="3"></div>
+                    <div class="bar-segment empty" data-value="4"></div>
+                    <div class="bar-segment empty" data-value="5"></div>
+                    <div class="bar-segment empty" data-value="6"></div>
+                    <div class="bar-segment empty" data-value="7"></div>
+                    <div class="bar-segment empty" data-value="8"></div>
+                    <div class="bar-segment empty" data-value="9"></div>
+                    <div class="bar-segment empty" data-value="10"></div>
+                </div>
+                <input type="hidden" name="comfort" id="input-comfort" value="0">
+            </div>
+
+            <div class="rating-section mb-3">
+                <div class="rating-header">
+                    <div>
+                        <span class="rating-title">Agility</span>
+                        <div class="rating-subtext">How much force the racket provides</div>
+                    </div>
+                    <span class="rating-value" id="agility-value">0</span>
+                </div>
+                <div class="rating-bars" data-attr="agility">
+                    <div class="bar-segment empty" data-value="1"></div>
+                    <div class="bar-segment empty" data-value="2"></div>
+                    <div class="bar-segment empty" data-value="3"></div>
+                    <div class="bar-segment empty" data-value="4"></div>
+                    <div class="bar-segment empty" data-value="5"></div>
+                    <div class="bar-segment empty" data-value="6"></div>
+                    <div class="bar-segment empty" data-value="7"></div>
+                    <div class="bar-segment empty" data-value="8"></div>
+                    <div class="bar-segment empty" data-value="9"></div>
+                    <div class="bar-segment empty" data-value="10"></div>
+                </div>
+                <input type="hidden" name="agility" id="input-agility" value="0">
+            </div>
+
+            <div class="rating-section mb-3">
+                <div class="rating-header">
+                    <div>
+                        <span class="rating-title">Spin</span>
+                        <div class="rating-subtext">How much force the racket provides</div>
+                    </div>
+                    <span class="rating-value" id="spin-value">0</span>
+                </div>
+                <div class="rating-bars" data-attr="spin">
+                    <div class="bar-segment empty" data-value="1"></div>
+                    <div class="bar-segment empty" data-value="2"></div>
+                    <div class="bar-segment empty" data-value="3"></div>
+                    <div class="bar-segment empty" data-value="4"></div>
+                    <div class="bar-segment empty" data-value="5"></div>
+                    <div class="bar-segment empty" data-value="6"></div>
+                    <div class="bar-segment empty" data-value="7"></div>
+                    <div class="bar-segment empty" data-value="8"></div>
+                    <div class="bar-segment empty" data-value="9"></div>
+                    <div class="bar-segment empty" data-value="10"></div>
+                </div>
+                <input type="hidden" name="spin" id="input-spin" value="0">
+            </div>
+
+
+            <div class="rating-section mb-3">
+                <div class="rating-header">
+                    <div>
+                        <span class="rating-title">Hardness</span>
+                        <div class="rating-subtext">How hard the racket is</div>
+                    </div>
+                    <span class="rating-value" id="hard-value">0</span>
+                </div>
+                <div class="rating-bars" data-attr="hard">
+                    <div class="bar-segment empty" data-value="1"></div>
+                    <div class="bar-segment empty" data-value="2"></div>
+                    <div class="bar-segment empty" data-value="3"></div>
+                    <div class="bar-segment empty" data-value="4"></div>
+                    <div class="bar-segment empty" data-value="5"></div>
+                    <div class="bar-segment empty" data-value="6"></div>
+                    <div class="bar-segment empty" data-value="7"></div>
+                    <div class="bar-segment empty" data-value="8"></div>
+                    <div class="bar-segment empty" data-value="9"></div>
+                    <div class="bar-segment empty" data-value="10"></div>
+                </div>
+                <input type="hidden" name="hard" id="input-hard" value="0">
+            </div>
+
+
+
+            <div class="rating-section mb-3">
+                <div class="rating-header">
+                    <div>
+                        <span class="rating-title">Ball exit</span>
+                        <div class="rating-subtext">How much the ball bounces off the racket with no motion from the player.</div>
+                    </div>
+                    <span class="rating-value" id="exit-value">0</span>
+                </div>
+                <div class="rating-bars" data-attr="exit">
+                    <div class="bar-segment empty" data-value="1"></div>
+                    <div class="bar-segment empty" data-value="2"></div>
+                    <div class="bar-segment empty" data-value="3"></div>
+                    <div class="bar-segment empty" data-value="4"></div>
+                    <div class="bar-segment empty" data-value="5"></div>
+                    <div class="bar-segment empty" data-value="6"></div>
+                    <div class="bar-segment empty" data-value="7"></div>
+                    <div class="bar-segment empty" data-value="8"></div>
+                    <div class="bar-segment empty" data-value="9"></div>
+                    <div class="bar-segment empty" data-value="10"></div>
+                </div>
+                <input type="hidden" name="exit" id="input-exit" value="0">
+            </div>
+
+            <!-- Comment Section -->
+            <div class="mb-3">
+                <span class="rating-title">Comment</span>
+                <textarea name="comment" class="textbox" rows="4"
+                    placeholder="Give your opinion on the racket with a max of 300 characters (optional)"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-custom">Save Review</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    document.querySelector("textarea[name='comment']").addEventListener("input", function () {
+        let comment = this.value;
+        let errorMessage = document.getElementById("comment-error");
+
+        // Check for comment length
+        if (comment.length > 300) {
+            if (!errorMessage) {
+                errorMessage = document.createElement("div");
+                errorMessage.id = "comment-error";
+                errorMessage.style.color = "red";
+                errorMessage.style.marginTop = "5px";
+                errorMessage.textContent = "Comment is too long! Max 300 characters.";
+                this.parentNode.appendChild(errorMessage);
+            }
+        } else {
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        }
+
+        // Check for profanity
+        if (containsProfanity(comment)) {
+            if (!errorMessage || errorMessage.textContent !== "Inappropriate language is not allowed.") {
+                // If profanity is detected and error message is not shown or it's different, show the profanity message
+                if (errorMessage) {
+                    errorMessage.remove();  // Remove any existing error message
+                }
+                errorMessage = document.createElement("div");
+                errorMessage.id = "comment-error";
+                errorMessage.style.color = "red";
+                errorMessage.style.marginTop = "5px";
+                errorMessage.textContent = "Inappropriate language is not allowed.";
+                this.parentNode.appendChild(errorMessage);
+            }
+        } else {
+            // If no profanity detected, remove the error message (if exists)
+            if (errorMessage && errorMessage.textContent === "Inappropriate language is not allowed.") {
+                errorMessage.remove();
+            }
+        }
+    });
+
+    // List of banned words in different languages
+    const bannedWords = [
+        "badword1", "badword2", "merde", "schlecht", "puta", "mierda", "f***", "sh*t",
+        "idiot", "stupid", "dumb", "asshole", "pendejo", "hijo de puta", "bitch", "fuck",
+        "shit", "fucking", "sh!t", "f!ck", "nigga", "nigger", "nga", "niggers"
+        // Add more words as needed
+    ];
+
+    function containsProfanity(text) {
+        let lowerText = text.toLowerCase();
+        return bannedWords.some(word => lowerText.includes(word));
+    }
+
+    document.getElementById("review-form").addEventListener("submit", function (e) {
+        let errors = [];
+
+        // Get selected racket ID
+        let racketId = document.getElementById("racket-id").value;
+        if (!racketId) {
+            errors.push("Please select a racket model.");
+        }
+
+        // Check if all rating inputs have a value greater than 0
+        document.querySelectorAll(".rating-section input[type='hidden']").forEach(input => {
+            if (parseInt(input.value) === 0) {
+                let category = input.name.charAt(0).toUpperCase() + input.name.slice(1); // Capitalize first letter
+                errors.push(`Please give a rating for ${category}.`);
+            }
+        });
+
+        // Check comment length
+        let comment = document.querySelector("textarea[name='comment']").value;
+        if (comment.length > 300) {
+            errors.push("Comment is too long! Max 300 characters.");
+        }
+
+        // Check for profanity
+        if (containsProfanity(comment)) {
+            errors.push("Your comment contains inappropriate language. Please remove it.");
+        }
+
+        // If errors exist, prevent form submission and show error messages
+        if (errors.length > 0) {
+            e.preventDefault();
+            alert(errors.join("\n"));
+        }
+    });
+
+    // Handle rating selection
+    document.querySelectorAll(".rating-bars").forEach(barGroup => {
+        barGroup.addEventListener("click", function (e) {
+            if (e.target.classList.contains("bar-segment")) {
+                let value = parseInt(e.target.dataset.value);
+                let attr = barGroup.dataset.attr;
+
+                document.getElementById(attr + "-value").textContent = value;
+                document.getElementById("input-" + attr).value = value;
+
+                // Reset all bars first
+                barGroup.querySelectorAll(".bar-segment").forEach(bar => {
+                    bar.classList.remove("filled");
+                    bar.classList.add("empty");
+                });
+
+                // Fill up to the selected value
+                barGroup.querySelectorAll(".bar-segment").forEach(bar => {
+                    if (parseInt(bar.dataset.value) <= value) {
+                        bar.classList.add("filled");
+                        bar.classList.remove("empty");
+                    }
+                });
+            }
+        });
+    });
+
+    // Handle brand selection
+    document.getElementById("brand-select").addEventListener("change", function () {
+        let brandId = this.value;
+        let modelSelect = document.getElementById("model-select");
+        modelSelect.innerHTML = '<option selected disabled>Loading...</option>';
+        modelSelect.disabled = true;
+
+        fetch(`/get_models?brand_id=${brandId}`)
+            .then(response => response.json())
+            .then(models => {
+                modelSelect.innerHTML = '<option selected disabled>Select Model</option>';
+                models.forEach(model => {
+                    let option = document.createElement("option");
+                    option.value = model.id;
+                    option.textContent = model.name;
+                    modelSelect.appendChild(option);
+                });
+                modelSelect.disabled = false;
+            })
+            .catch(error => console.error("Error fetching models:", error));
+    });
+
+    // Handle model selection and fetch existing review
+    document.getElementById("model-select").addEventListener("change", function () {
+        let racketId = this.value;
+        document.getElementById("racket-id").value = racketId;
+
+        // Fetch existing review
+        fetch(`/get_review?racket_id=${racketId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("Error", data.error);
+                    return;
+                }
+
+                // Update racket image
+                if (data.thumbnail) {
+                    let thumbnailContainer = document.getElementById("racket-thumbnail-container");
+                    let thumbnailImage = document.getElementById("racket-thumbnail");
+
+                    thumbnailImage.src = data.thumbnail;
+                    thumbnailContainer.style.display = "block";
+                }
+
+                // If there's no previous review, reset fields
+                if (data.message) {
+                    console.log("No previous review.");
+                    resetReviewForm();
+                    return;
+                }
+
+                // Fill ratings
+                ["power", "control", "comfort", "agility", "spin", "hard", "exit"].forEach(attr => {
+                    if (data[attr] !== undefined) {
+                        document.getElementById(`${attr}-value`).textContent = data[attr];
+                        document.getElementById(`input-${attr}`).value = data[attr];
+
+                        let barGroup = document.querySelector(`.rating-bars[data-attr="${attr}"]`);
+                        if (barGroup) {
+                            barGroup.querySelectorAll(".bar-segment").forEach(bar => {
+                                let barValue = parseInt(bar.dataset.value);
+                                if (barValue <= data[attr]) {
+                                    bar.classList.add("filled");
+                                    bar.classList.remove("empty");
+                                } else {
+                                    bar.classList.remove("filled");
+                                    bar.classList.add("empty");
+                                }
+                            });
+                        }
+                    }
+                });
+
+                // Fill comment
+                document.querySelector("textarea[name='comment']").value = data.comment || "";
+            })
+            .catch(error => console.error("Error fetching review:", error));
+    });
+
+    // Function to reset form when no review is found
+    function resetReviewForm() {
+        ["power", "control", "comfort", "agility", "spin", "exit", "hard"].forEach(attr => {
+            document.getElementById(`${attr}-value`).textContent = "0";
+            document.getElementById(`input-${attr}`).value = "0";
+
+            let barGroup = document.querySelector(`.rating-bars[data-attr="${attr}"]`);
+            if (barGroup) {
+                barGroup.querySelectorAll(".bar-segment").forEach(bar => {
+                    bar.classList.remove("filled");
+                    bar.classList.add("empty");
+                });
+            }
+        });
+
+        document.querySelector("textarea[name='comment']").value = "";
+    }
+
+</script>
+
+{% endblock %}

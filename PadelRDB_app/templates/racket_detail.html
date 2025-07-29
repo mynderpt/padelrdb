@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/racket.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="contentbackground">
+    <div class="container mt-5" style="max-width: 1104px; padding: 10px; padding-top: 30px;">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>{{ racket.name }}</h2>
+            <button class="btn btn-review-desktop">
+                <a href="#" style="color: white; text-decoration: none;">+ Add Review</a>
+            </button>
+        </div>
+
+
+
+
+        <!-- Thumbnail Image -->
+        <div class="row mt-4">
+            <div class="image-card col-md-6">
+                <!-- Main Thumbnail -->
+                <img src="{{ racket.thumbnail.url }}" alt="{{ racket.name }} thumbnail"
+                    class="thumbnail img-fluid rounded" id="mainThumbnail">
+
+                <!-- Modal for all additional images -->
+                <div id="thumbnailModal" class="modal">
+                    <span class="close" id="closeModal">&times;</span>
+                    <div class="modal-content">
+                        <div class="modal-images">
+                            {% for photo in racket.gallery_images.all %}
+                            <img src="{{ photo.image.url }}" alt="Additional image of {{ racket.name }}">
+                            {% empty %}
+                            <p class="modal-message">No additional images available.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Users Rating -->
+            <div class="col-md-3">
+                <div class="card-custom">
+                    <h5>Users</h5>
+                    <p class="stats">Power <span class="float-end">{{ user_scores.avg_power|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div class="bar {% if forloop.counter <= user_scores.avg_power|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Control <span
+                            class="float-end">{{user_scores.avg_control|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= user_scores.avg_control|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Comfort <span
+                            class="float-end">{{user_scores.avg_comfort|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= user_scores.avg_comfort|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Maneuverability<span
+                            class="float-end">{{user_scores.avg_maneuverability|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= user_scores.avg_maneuverability|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Spin<span
+                            class="float-end">{{user_scores.avg_spin|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div class="bar {% if forloop.counter <= user_scores.avg_spin|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Hardness<span
+                            class="float-end">{{user_scores.avg_hard|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div class="bar {% if forloop.counter <= user_scores.avg_hard|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Ball Exit<span
+                            class="float-end">{{user_scores.avg_exit|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div class="bar {% if forloop.counter <= user_scores.avg_exit|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="review-count text-end mt-2"><small>{{ user_scores.total_reviews|default:0 }} user review{{ user_scores.total_reviews|pluralize }}</small></p>
+                </div>
+            </div>
+
+            <!-- Critics Rating -->
+            <div class="col-md-3">
+                <div class="card-custom">
+                    <h5>Experts</h5>
+                    <p class="stats">Power <span
+                            class="float-end">{{expert_scores.avg_power|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= expert_scores.avg_power|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Control <span
+                            class="float-end">{{expert_scores.avg_control|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= expert_scores.avg_control|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Comfort <span
+                            class="float-end">{{expert_scores.avg_comfort|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= expert_scores.avg_comfort|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Maneuverability<span
+                            class="float-end">{{expert_scores.avg_maneuverability|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= expert_scores.avg_maneuverability|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Spin<span
+                            class="float-end">{{expert_scores.avg_spin|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= expert_scores.avg_spin|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="stats">Hardness<span
+                            class="float-end">{{expert_scores.avg_hard|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= expert_scores.avg_hard|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                     <p class="stats">Ball Exit<span
+                            class="float-end">{{expert_scores.avg_exit|default:"0"|floatformat:1}}</span>
+                    </p>
+                    <div class="rating-bar">
+                        {% for i in "1234567890"|make_list %}
+                        <div
+                            class="bar {% if forloop.counter <= expert_scores.avg_exit|default:0 %} filled {% endif %}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <p class="review-count text-end mt-2"><small>{{ expert_scores.total_reviews|default:0 }} expert
+                            review{{ expert_scores.total_reviews|pluralize }}</small></p>
+                            
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="textbox">
+                    <p>Core:<span class="subtext">{{racket.core}}</span></p>
+                    <p>Surface:<span class="subtext">{{racket.surface}}</span></p>
+                    <p>Weight:<span class="subtext">{{racket.weight}}</span></p>
+                    <p>Shape:<span class="subtext">{{racket.shape}}</span></p>
+                    <p>Balance:<span class="subtext">{{racket.balance}}</span></p>
+                    <p>Type of Game:<span class="subtext">{{racket.gametype}}</span></p>
+                    <p>Finish:<span class="subtext">{{racket.finish}}</span></p>
+                </div>
+            </div>
+
+
+            <!-- Comments Section -->
+            <div class="col-md-6">
+                <div class="comment-box">
+                    <h5>Latest Comment</h5>
+
+                    <!-- Display only one random comment -->
+                    {% if latest_comment %}
+                    <p class="comment-user"><span class="user">{{ latest_comment.user.username }}</span>
+                        ({{latest_comment.user.get_user_type_display }})</p>
+                    <p class="comment-text">{{ latest_comment.comment }}</p>
+                    {% else %}
+                    <p><span class="subtext">No comments yet.</span></p>
+                    {% endif %}
+
+
+                    <span class="btn-show" id="show-more-btn">Show More +</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="media-store-container">
+        <!-- MEDIA SECTION -->
+        <div class="video-section">
+            <h5><span class="titles">Videos</span></h5>
+            {% with racket.get_media_details as videos %}
+            {% if videos %}
+            <ul>
+                {% for video in videos %}
+                <li onclick="window.location.href='{{ video.url }}'">
+                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                    <p>{{ video.title }}</p>
+                    <p><span class="author">{{ video.creator }}</span></p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p><span class="default-text">No videos for this racket.</span></p>
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- STORE LINKS SECTION -->
+        <div class="store-links">
+            <h5><span class="titles">Where to buy</span></h5>
+            {% with racket.categorized_links.brand as brand_links %}
+            {% with racket.categorized_links.retailers as retailer_links %}
+            {% if brand_links or retailer_links %}
+            <!-- Brand Store Links -->
+            {% if brand_links %}
+            <ul>
+                {% for item in brand_links %}
+                <li onclick="window.location.href='{{ item.url }}'">
+                    <img src="{% static 'images/store_logos/' %}{{ racket.brand|lower }}.png" alt="Brand Logo">
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <!-- Retailer Links -->
+            {% if retailer_links %}
+            <h6>Retailers</h6>
+            <ul>
+                {% for item in retailer_links %}
+                <li onclick="window.location.href='{{ item.url }}'">
+                    <img src="{% static 'images/store_logos/' %}{{ item.store|lower }}.png" alt="{{ item.store }}">
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% else %}
+            <p><span class="default-text">No store links available.</span></p>
+            {% endif %}
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+
+        <!-- Modal (Popup) for additional comments -->
+        <div id="comment-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" id="close-btn">&times;</span>
+                <h5>More Comments</h5>
+
+                <!-- Filter Dropdown -->
+                <div class="filter-container">
+                    <label for="comment-filter">Filter by:</label>
+                    <select id="comment-filter">
+                        <option value="all">All Comments</option>
+                        <option value="regular">Regular Users</option>
+                        <option value="expert">Expert Users</option>
+                    </select>
+                </div>
+
+                <!-- Additional comments -->
+                <div class="additional-comments">
+                    {% for comment in comments %}
+                    <div class="comment-item" data-user-type="{{ comment.user.user_type|lower }}">
+                        <p>{{ comment.user.username }} ({{ comment.user.get_user_type_display }})</p>
+                        <p><span class="comment-text">{{ comment.comment }}</span></p>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var modal = document.getElementById("comment-modal");
+        var btn = document.getElementById("show-more-btn");
+        var closeBtn = document.getElementById("close-btn");
+        var filterDropdown = document.getElementById("comment-filter");
+        var allComments = document.querySelectorAll(".comment-item");
+
+        // Open modal
+        if (btn) {
+            btn.onclick = function () {
+                modal.style.display = "block";
+            };
+        }
+
+        // Close modal
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+
+        // Filtering logic
+        filterDropdown.addEventListener("change", function () {
+            var selectedFilter = filterDropdown.value;
+
+            allComments.forEach(function (comment) {
+                var userType = comment.getAttribute("data-user-type");  // Get user type
+
+                console.log("Comment user type:", userType);  // Debugging
+                console.log("Selected filter:", selectedFilter);  // Debugging
+
+                if (selectedFilter === "all") {
+                    comment.style.display = "block";
+                } else if (userType === selectedFilter) {
+                    comment.style.display = "block";
+                } else {
+                    comment.style.display = "none";
+                }
+            });
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const thumbnail = document.getElementById("mainThumbnail");
+        const modal = document.getElementById("thumbnailModal");
+        const closeBtn = document.getElementById("closeModal");
+
+        if (thumbnail && modal && closeBtn) {
+            thumbnail.addEventListener("click", () => {
+                modal.style.display = "block";
+            });
+
+            closeBtn.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        }
+    });
+
+</script>
+{% endblock %}

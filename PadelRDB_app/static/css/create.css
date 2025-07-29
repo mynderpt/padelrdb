@@ -1,0 +1,76 @@
+.main {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(#17253F, black);
+}
+/* Signup Container */
+.signup-container {
+    padding-top: 120px;
+    width: 500px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Input Fields */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Error Message */
+.error {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+
+/* Create Account Button */
+.signup-btn {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    background: #218838;
+}
+
+/* Back to Login Link */
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

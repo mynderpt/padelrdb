@@ -1,0 +1,429 @@
+.contentbackground {
+    background: linear-gradient(to bottom, #17253f, black);
+}
+
+/* --- Card Styling --- */
+.card-custom {
+    border-radius: 12px;
+    padding: 15px;
+    border: 2px solid;
+    border-image: linear-gradient(white, #17253F) 1;
+    margin-bottom: 20px;
+    max-width: 550px;
+    min-width: 195px;
+    height: fit-content;
+}
+
+/* --- Rating Bars --- */
+.rating-bar {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.bar {
+    width: 50px;
+    height: 15px;
+    background-color: gray;
+    border-radius: 2px;
+}
+
+.bar.filled {
+    background: rgb(47, 47, 179);
+}
+
+/* --- Stats & Comments --- */
+.stats {
+    margin-bottom: 5px;
+}
+
+.comment-box {
+    position: relative;
+    border-radius: 10px;
+    border: 2px solid;
+    border-image: linear-gradient(white, #17253F) 1;
+    padding: 15px;
+    min-height: 250px;
+    height: fit-content;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.comment-box p {
+    margin-bottom: 10px;
+}
+
+.comment-box .comment-user {
+    margin: 15px 0 10px 0;
+}
+
+.comment-text {
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.comment-box .comment-text {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.user {
+    font-size: 18px;
+}
+
+/* --- Thumbnail --- */
+.thumbnail-container img,
+.thumbnail {
+    width: 100%;
+    max-width: 470px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* --- Modal Styling --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 60px 0;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    color: #17253F;
+}
+
+/* --- Updated Modal Layout Spacing --- */
+.modal-content {
+    margin: 30px auto; /* desktop default */
+    padding: 20px;
+    border: 1px solid #888;
+    width: calc(100% - 60px); /* 30px gap on left/right */
+    max-width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    color: #17253F;
+    box-sizing: border-box;
+}
+
+/* --- Modal Images Grid --- */
+.modal-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+/* --- Individual Modal Images --- */
+.modal-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.close,
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn {
+    float: right;
+    font-size: 28px;
+    color: #aaa;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* --- Buttons --- */
+.btn-review-mobile,
+.btn.btn-review-desktop {
+    border-radius: 10px;
+    border: 2px solid;
+    background: transparent;
+    color: white;
+    padding: 10px 20px;
+}
+
+.btn-show {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #0056b3;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- Image Cards --- */
+.image-card {
+    margin-bottom: 20px;
+}
+
+/* --- Subtext --- */
+.subtext {
+    color: gray;
+    padding-left: 5px;
+}
+
+/* --- Filter Dropdown --- */
+.filter-container {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#comment-filter {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+/* --- Comment Highlighting --- */
+.comment-item.regular {
+    background-color: #f9f9f9;
+}
+
+.comment-item.expert {
+    background-color: #e9e9e9;
+}
+
+.comment-item.regular,
+.comment-item.expert {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* --- Section Titles --- */
+.video-section h5,
+.store-links h5 {
+    text-align: left;
+    font-size: 25px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* --- Media & Store Containers --- */
+.media-store-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* --- Videos --- */
+.video-section ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.video-section li {
+    width: 350px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background-color: black;
+    margin-bottom: 30px;
+}
+
+.video-section img {
+    width: 100%;
+    height: 200px;
+    max-width: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.video-section p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.video-section a {
+    color: gray;
+    text-decoration: none;
+}
+
+/* --- Store Thumbnails --- */
+.store-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.store-links li {
+    width: 265px;
+    height: 145px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.store-links img {
+    width: 100%;
+    height: 145px;
+    max-width: 265px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* --- Default Message Text --- */
+.default-text {
+    text-align: center;
+    width: 100%;
+    padding: 100px;
+    font-size: 20px;
+    color: gray;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- Section Title Borders --- */
+.titles {
+    padding: 0 10px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    border-left: 2px solid;
+    border-bottom: none;
+    border-image: linear-gradient(to bottom, white, #17253F) 1;
+}
+
+.text-end {
+    font-size: 16px;
+    color: gray;
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+
+
+
+/* --- Responsive Layouts --- */
+@media (min-width: 768px) {
+    .textbox {
+        min-height: 285px;
+        border-radius: 10px;
+        border: 2px solid;
+        color: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-image: linear-gradient(white, #17253F) 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .modal-content {
+        margin: 10px auto; /* reduced padding on phone */
+        width: calc(100% - 20px); /* 10px gap on both sides */
+    }
+
+    .modal-images {
+        grid-template-columns: 1fr; /* One image per row on phone */
+    }
+
+    .thumbnail {
+        padding: 0 25px;
+    }
+
+    .textbox {
+        border-radius: 10px;
+        border: 2px solid;
+        color: white;
+        padding: 10px 20px;
+        margin: 0 25px 20px;
+        border-image: linear-gradient(white, #17253F) 1;
+    }
+
+    .row {
+        justify-content: center;
+    }
+
+    .col-md-3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 250px;
+        margin: auto;
+    }
+
+    .review-container .col-md-3,
+    .detail-container,
+    .comment-container {
+        width: 100%;
+        max-width: 470px;
+        margin: auto;
+        padding: 0 25px;
+    }
+
+    .video-section ul {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .video-section li {
+        width: 100%;
+        max-width: 300px;
+    }
+}

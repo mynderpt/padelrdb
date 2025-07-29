@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/browse.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>Browse</h1>
+        </div>
+    </div>
+</section>
+
+<section class="brands-section">
+    <div class="container">
+        <h2 class="section-title">All Brands</h2>
+        <div class="row justify-content-center g-4">
+
+            <div class="col-auto">
+                <a href="{% url 'all_rackets' %}" class="brand-link">
+                    <div class="brand-card d-flex align-items-center justify-content-center text-center">
+                        {% if request.LANGUAGE_CODE == 'es' %}
+                        <img src="{% static 'images/myimage-es.png' %}" alt="Imagen en Español">
+                        {% else %}
+                        <img src="{% static 'images/myimage-en.png' %}" alt="Image in English">
+                        {% endif %}
+
+                    </div>
+                </a>
+            </div>
+
+            {% for brand in brands %}
+            <div class="col-auto">
+                <a href="{% url 'brand_page' brand.name %}" class="brand-link">
+                    <div class="brand-card">
+                        <img src="{{ brand.logo.url }}" alt="{{ brand.name }} Logo">
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}  {# This enables translation tags #}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>{% trans "Welcome to" %} <br><em>PadelRDB</em></h1>
+            <p>{% trans "Lorem ipsum" %}</p>
+            <a href="{% url 'browse' %}" class="btn btn-browse">{% trans "Browse" %}</a>
+        </div>
+    </div>
+</section>
+
+<section class="content-section py-5">
+    <div class="container">
+        <div class="row justify-content-center g-4">
+            <div class="col-auto">
+                <div class="custom-card">
+                    <div class="placeholder-img"></div>
+                    <div class="card-footer">
+                        <h4>{% trans "Browse" %}</h4>
+                        <p>
+                            {% trans "Find your next racket by comparing what others think of each racket's different atributes." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="custom-card">
+                    <div class="placeholder-img"></div>
+                    <div class="card-footer">
+                        <h4>{% trans "Review" %}</h4>
+                        <p>
+                            {% trans "Leave your thoughts on any number of rackets you previously owned." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-auto">
+                <div class="custom-card">
+                    <div class="placeholder-img"></div>
+                    <div class="card-footer">
+                        <h4>{% trans "Shop" %}</h4>
+                        <p>
+                            {% trans "After finding the ideal racket for you head onto our partner stores and use our code for a discount on your purchase with our code: PadelRDB." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

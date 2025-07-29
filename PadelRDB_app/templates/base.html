@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "PadelRDB" %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    {% block css %}{% endblock %}
+</head>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="{% trans 'PadelRDB Logo' %}" class="logo">
+        </a>
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
+            <span class="toggler-bar top-bar"></span>
+            <span class="toggler-bar middle-bar"></span>
+            <span class="toggler-bar bottom-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto text-lg-start text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'browse' %}">{% trans "Browse" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'review_entry' %}">{% trans "Review" %}</a>
+                </li>
+
+                <!-- Language Dropdown -->
+                <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="langDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if request.LANGUAGE_CODE == 'es' %}
+                                Español
+                            {% else %}
+                                English
+                            {% endif %}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+                            <li><button class="dropdown-item" type="submit" name="language" value="en">English</button></li>
+                            <li><button class="dropdown-item" type="submit" name="language" value="es">Español</button></li>
+                        </ul>
+                    </div>
+                </form>
+            </ul>
+
+            {% if user.is_authenticated %}
+                <div class="d-none d-lg-block ms-3">
+                    <a href="{% url 'profile' %}" class="btn profile-btn">
+                        <img src="{{ user.profile_image.url }}" alt="{% trans 'Profile Picture' %}" class="profile-icon">
+                    </a>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-signin d-none d-lg-block ms-3">{% trans "Sign In" %}</a>
+            {% endif %}
+
+            <!-- Mobile -->
+            <div class="d-lg-none text-center mt-2">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="btn login">
+                        <i class="bi bi-person-circle"></i> {% trans "Profile" %}
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-signin">{% trans "Sign In" %}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer class="modern-footer">
+    <div class="footer-content">
+        <img src="{% static 'images/logo.png' %}" alt="{% trans 'Logo' %}" class="footer-logo">
+        <nav class="footer-nav">
+            <a href="{% url 'home' %}">{% trans "Home" %}</a>
+            <a href="#">{% trans "About" %}</a>
+            <a href="#">{% trans "Donations" %}</a>
+            <a href="#">{% trans "Contact" %}</a>
+        </nav>
+        <div class="social-icons">
+            <a href="#"><img src="{% static 'images/icon-instagram.png' %}" alt="Instagram" /></a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>{% trans "Use code" %}: <strong>PadelRDB</strong> {% trans "for 10% on partner stores." %}</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+
+</html>

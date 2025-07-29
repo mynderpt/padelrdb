@@ -1,0 +1,114 @@
+# Spanish translations for PadelRDB
+# Copyright (C) 2025
+# This file is distributed under the same license as the PadelRDB package.
+# Excalibur <your-email@example.com>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: PadelRDB 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-22 19:30+0100\n"
+"PO-Revision-Date: 2025-06-22 02:30+0100\n"
+"Last-Translator: Excalibur <your-email@example.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\PadelRDB_app\templates\base.html:9
+msgid "PadelRDB"
+msgstr ""
+
+#: .\PadelRDB_app\templates\base.html:18
+msgid "PadelRDB Logo"
+msgstr ""
+
+#: .\PadelRDB_app\templates\base.html:21
+msgid "Toggle navigation"
+msgstr ""
+
+#: .\PadelRDB_app\templates\base.html:30 .\PadelRDB_app\templates\base.html:90
+msgid "Home"
+msgstr "Casa"
+
+#: .\PadelRDB_app\templates\base.html:33 .\PadelRDB_app\templates\home.html:17
+#: .\PadelRDB_app\templates\home.html:29
+msgid "Browse"
+msgstr "Explorar"
+
+#: .\PadelRDB_app\templates\base.html:36 .\PadelRDB_app\templates\home.html:41
+msgid "Review"
+msgstr "Reseñar"
+
+#: .\PadelRDB_app\templates\base.html:63
+#, fuzzy
+#| msgid "Profile"
+msgid "Profile Picture"
+msgstr "Perfil"
+
+#: .\PadelRDB_app\templates\base.html:67 .\PadelRDB_app\templates\base.html:77
+msgid "Sign In"
+msgstr "Entrar"
+
+#: .\PadelRDB_app\templates\base.html:74
+msgid "Profile"
+msgstr "Perfil"
+
+#: .\PadelRDB_app\templates\base.html:88
+msgid "Logo"
+msgstr ""
+
+#: .\PadelRDB_app\templates\base.html:91
+msgid "About"
+msgstr "Sobre"
+
+#: .\PadelRDB_app\templates\base.html:92
+msgid "Donations"
+msgstr "Donações"
+
+#: .\PadelRDB_app\templates\base.html:93
+msgid "Contact"
+msgstr "Contactos"
+
+#: .\PadelRDB_app\templates\base.html:101
+msgid "Use code"
+msgstr "Usa el codigo"
+
+#: .\PadelRDB_app\templates\base.html:101
+#, fuzzy, python-format
+msgid "for 10%% on partner stores."
+msgstr "por 10% en nuestros parceiros."
+
+#: .\PadelRDB_app\templates\home.html:15
+msgid "Welcome to"
+msgstr "Bienvenido a"
+
+#: .\PadelRDB_app\templates\home.html:16
+msgid "Lorem ipsum"
+msgstr "Texto de ejemplo"
+
+#: .\PadelRDB_app\templates\home.html:31
+msgid ""
+"Find your next racket by comparing what others think of each racket's "
+"different atributes."
+msgstr ""
+"Encuentra tu próxima pala comparando lo que otros piensan sobre los "
+"diferentes atributos de cada una."
+
+#: .\PadelRDB_app\templates\home.html:43
+msgid "Leave your thoughts on any number of rackets you previously owned."
+msgstr ""
+"Deja tus opiniones sobre cualquier pala que hayas utilizado anteriormente."
+
+#: .\PadelRDB_app\templates\home.html:53
+msgid "Shop"
+msgstr "Comprar"
+
+#: .\PadelRDB_app\templates\home.html:55
+msgid ""
+"After finding the ideal racket for you head onto our partner stores and use "
+"our code for a discount on your purchase with our code: PadelRDB."
+msgstr ""
+"Después de encontrar la pala ideal, dirígete a nuestras tiendas asociadas y "
+"utiliza nuestro código: PadelRDB para obtener un descuento en tu compra."

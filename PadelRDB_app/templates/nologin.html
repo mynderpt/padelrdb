@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/redirect.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="main">
+  <div class="buttons-container">
+    <h2>You need to be logged in to use this feature.</h2>
+
+    <!-- Login Button -->
+    <a href="{% url 'login' %}?next={% url 'review' %}" class="login-btn">Login</a>
+
+    <!-- Or text -->
+    <h3>Or</h3>
+
+    <!-- Create Account Button -->
+    <a href="{% url 'create' %}?next={% url 'review' %}" class="signup-btn">Create Account</a>
+  </div>
+</div>
+
+
+{% endblock %}

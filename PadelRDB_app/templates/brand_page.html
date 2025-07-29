@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/brand_page.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1>Browse</h1>
+        </div>
+    </div>
+</section>
+
+<!-- Brand Rackets Section -->
+<section class="brands-section">
+    <div class="container">
+
+        <div class="row mb-3 text-center text-md-start">
+            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start align-items-center mb-2 mb-md-0">
+                <h2 class="section-title m-0">
+                    <a href="{% url 'browse' %}" class="brand-link">All Brands</a> / {{ brand.name|capfirst }}
+                </h2>
+            </div>
+            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                <form method="get" class="d-flex flex-column flex-sm-row align-items-center w-100 justify-content-center justify-content-md-end">
+                    <select name="type_of_game" class="form-select me-sm-2 mb-2 mb-sm-0" style="max-width: 125px;">
+                        <option value="">All Types</option>
+                        {% for game_type in game_types %}
+                        <option value="{{ game_type }}" {% if request.GET.type_of_game == game_type %}selected{% endif %}>
+                            {{ game_type }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-outline-secondary">Filter</button>
+                </form>
+            </div>
+        </div>
+        
+
+            <div class="row justify-content-center g-4">
+                {% for racket in rackets %}
+                <div class="col-md-3 col-sm-6 d-flex justify-content-center">
+                    <div class="racket-card">
+                        <!-- Wrap everything inside an <a> tag -->
+                        <a href="{% url 'racket_detail' name=brand.name|lower slug=racket.slug|lower %}"
+                            class="racket-card">
+                            <img src="{{ racket.thumbnail.url }}" class="card-img-top" alt="{{ racket.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ racket.name }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+</section>
+
+{% endblock %}

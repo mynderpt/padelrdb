@@ -1,0 +1,93 @@
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 200px;
+    background: url('/static/images/browse-image.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.hero-overlay {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 500px;
+    text-align: left;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    padding-top: 60px;
+}
+
+/* Responsive Hero */
+@media (max-width: 992px) {
+    .hero {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-overlay {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+/* Brand Section */
+.brands-section {
+    background: linear-gradient(to bottom, #17253f, #000);
+    padding: 50px 0;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    padding-left: 30px;
+}
+
+/* Brand Card */
+.brand-card {
+    width: 260px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: inset 5px 5px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    font-family: 'Goldman', sans-serif;
+}
+
+
+.brand-card img {
+    max-width: 80%;
+    max-height: 80%;
+    filter: brightness(0) invert(1);
+}
+
+.brand-card:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .section-title {
+        text-align: center;
+    }
+
+    .brand-card {
+        width: 220px;
+        height: 180px;
+    }
+}

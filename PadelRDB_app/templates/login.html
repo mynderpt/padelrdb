@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="main">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+                <div class="error">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <!-- Username or Email Field -->
+            <div class="input-group">
+                <label for="id_username">Username or Email</label>
+                {{ form.username }}
+                <div class="error">
+                    {{ form.username.errors }}
+                </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="input-group">
+                <label for="id_password">Password</label>
+                {{ form.password }}
+                <div class="error">
+                    {{ form.password.errors }}
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <!-- Create Account Link -->
+        <div class="signup-link">
+            Don't have an account? <a href="{% url 'create' %}">Create an Account</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
