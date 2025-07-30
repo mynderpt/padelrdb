@@ -8,23 +8,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-key-for-dev')
 # Podes forçar DEBUG=True para local, ou definir variável de ambiente em produção
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-<<<<<<< HEAD
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
     ALLOWED_HOSTS = ['padelrdb.onrender.com']
-=======
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0)w@v5t6-h)@jj*cuddu$q(h-q&z^wx^0c^9-t6xczboc3pkcj'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['padelrdb.onrender.com']
-
-
-# Application definition
->>>>>>> 6d0730bf414d88473b15d62a76760249ca136a0c
 
 INSTALLED_APPS = [
     'PadelRDB_app',
