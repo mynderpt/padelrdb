@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0)w@v5t6-h)@jj*cuddu$q(h-q&z^wx^0c^9-t6xczboc3pkcj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = ['padelrdb.onrender.com']
 
 
 # Application definition
