@@ -4,9 +4,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-key-for-dev')
-
-# Podes forçar DEBUG=True para local, ou definir variável de ambiente em produção
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'False'
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
