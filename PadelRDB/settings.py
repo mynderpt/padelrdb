@@ -4,8 +4,11 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-key-for-dev')
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
+# ► Por defeito False (produção). Liga debug localmente com DJANGO_DEBUG=True.
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
+
+# ► Usa env; no Render define: padelrdb.onrender.com,localhost,127.0.0.1
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
@@ -20,6 +23,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Podes deixar sempre ligado sem problema; se preferires, mantém condicional:
     *(['whitenoise.middleware.WhiteNoiseMiddleware'] if not DEBUG else []),
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,16 +73,18 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# ---------- STATIC ----------
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "PadelRDB_app/static")]
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-else:
-    STATIC_ROOT = None
-    STATICFILES_STORAGE = None
+# ► SEMPRE definido (resolve o erro do collectstatic no Render)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# ► Em produção, usa o storage comprimido/manifest do WhiteNoise
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# ---------- MEDIA ----------
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
