@@ -90,3 +90,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'PadelRDB_app.CustomUser'
+
+# aceita POST do teu domínio https
+CSRF_TRUSTED_ORIGINS = ['https://padelrdb.onrender.com']
+
+# quando estás atrás de proxy (Render) em HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
